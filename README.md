@@ -97,13 +97,13 @@ necessary, of course, but it's good JavaScript citizenship.
 
 ## Examples
 
-### Default Usage: print 1 random number between 0 - 99
+### Default Usage: create 1 random number between 0 - 99
 ```javascript
 var rand = require('random-seed').create();
 var n = rand(100); // generate a random number between 0 - 99
 ```
 
-### Always print same sequence of random numbers
+### Always create same sequence of random numbers
 ```javascript
 var rand = require('random-seed').create();
 rand.initState();
