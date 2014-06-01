@@ -1,7 +1,7 @@
 {
   "name": "random-seed",
   "description": "GRC's UHE PRNG in node (Ultra-High Entropy Pseudo-Random Number Generator by Gibson Research Corporation)",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://github.com/skratchdot/random-seed",
   "author" : "skratchdot",
   "repository": {
@@ -25,13 +25,13 @@
     "node": ">= 0.6.0"
   },
   "scripts": {
-    "test": "grunt nodeunit"
+    "test": "grunt test"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.1.1",
-    "grunt-contrib-nodeunit": "~0.1.2",
-    "grunt-contrib-watch": "~0.2.0",
-    "grunt": "~0.4.1"
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-nodeunit": "~0.4.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt": "~0.4.5"
   },
   "keywords": [
     "random",
