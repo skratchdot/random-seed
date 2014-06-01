@@ -19,6 +19,7 @@
 		test.doesNotThrow(block, [error], [message])
 		test.ifError(value)
 */
+var testLoop = 10000;
 
 exports['no args'] = function (test) {
 	var rand = require('../lib/random-seed.js').create();
@@ -83,5 +84,60 @@ exports['multiple rand without init'] = function (test) {
 	rand2.initState();
 	test.equal(rand1(Number.MAX_VALUE), rand2(Number.MAX_VALUE),
 			'these should match');
+	test.done();
+};
+
+exports['random() >=0 && < 1'] = function (test) {
+	var rand = require('../lib/random-seed.js').create(),
+		val, i;
+	test.expect(testLoop);
+	for (i = 0; i < testLoop; i++) {
+		val = rand.random();
+		test.ok(val >= 0 && val < 1, 'random() is >=0 and < 1');
+	}
+	test.done();
+};
+
+exports['intBetween(5, 10) >=5 && <= 10'] = function (test) {
+	var rand = require('../lib/random-seed.js').create(),
+		val, i;
+	test.expect(testLoop);
+	for (i = 0; i < testLoop; i++) {
+		val = rand.random();
+		test.ok(val >= 0 && val < 1, 'random() is >=0 and < 1');
+	}
+	test.done();
+};
+
+exports['intBetween(-5, 5) >=-5 && <= 5'] = function (test) {
+	var rand = require('../lib/random-seed.js').create(),
+		val, i;
+	test.expect(testLoop);
+	for (i = 0; i < testLoop; i++) {
+		val = rand.random();
+		test.ok(val >= 0 && val < 1, 'random() is >=0 and < 1');
+	}
+	test.done();
+};
+
+exports['floatBetween(5, 10) >=5 && < 10'] = function (test) {
+	var rand = require('../lib/random-seed.js').create(),
+		val, i;
+	test.expect(testLoop);
+	for (i = 0; i < testLoop; i++) {
+		val = rand.random();
+		test.ok(val >= 0 && val < 1, 'random() is >=0 and < 1');
+	}
+	test.done();
+};
+
+exports['floatBetween(-5, 5) >=-5 && < 5'] = function (test) {
+	var rand = require('../lib/random-seed.js').create(),
+		val, i;
+	test.expect(testLoop);
+	for (i = 0; i < testLoop; i++) {
+		val = rand.random();
+		test.ok(val >= 0 && val < 1, 'random() is >=0 and < 1');
+	}
 	test.done();
 };

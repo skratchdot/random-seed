@@ -1,5 +1,9 @@
 # random-seed
 
+[![Build Status](https://travis-ci.org/skratchdot/random-seed.png?branch=master)](https://travis-ci.org/skratchdot/random-seed)
+[![Coverage Status](https://coveralls.io/repos/skratchdot/random-seed/badge.png)](https://coveralls.io/r/skratchdot/random-seed)
+[![devDependency Status](https://david-dm.org/skratchdot/random-seed/dev-status.svg)](https://david-dm.org/skratchdot/random-seed#info=devDependencies)
+
 Gibson Research Corporation's Ultra-High Entropy Pseudo-Random Number Generator
 ported to node.
 
@@ -10,6 +14,13 @@ The node project page is here: https://github.com/skratchdot/random-seed
 There were a few modifications made to the original library to allow seeding, and to
 pass jshint.
 
+I've also added the following helper methods:
+
+- random()
+- range(range)
+- floatBetween(min, max)
+- intBetween(min, max)
+
 
 ## Getting Started
 
@@ -19,6 +30,7 @@ Install the module with: `npm install random-seed`
 var rand = require('random-seed').create();
 var n = rand(100); // generate a random number between 0 - 99
 ```
+
 
 ## Documentation
 
@@ -50,8 +62,27 @@ I typically create a random generator like this:
 var rand = require('random-seed').create();
 ```
 
-#### rand(num)
+#### rand(range)
 
+Returns a random integer between 0 (inclusive) and range (exclusive)
+
+#### rand.range(range)
+
+Returns a random integer between 0 (inclusive) and range (exclusive)
+
+#### rand.random()
+
+Returns a random float between 0 (inclusive) and 1 (exclusive)
+
+Works the same as Math.random()
+
+#### rand.floatBetween(min, max)
+
+Returns a random float between min (inclusive) and max (exclusive)
+
+#### rand.intBetween(min, max)
+
+Returns a random integer between min (inclusive) and max (inclusive)
 
 #### rand.seed(seed)
 
@@ -128,9 +159,25 @@ var seed = 'Hello World',
 console.log(rand1(100), rand2(100));
 ```
 
+### Replace Math.random()
+```javascript
+var math = require('random-seed').create();
+console.log(math.random());
+```
+
+
 ## Release History
 
-- v0.1.0 (Released October 26, 2013)
+#### v0.2.0 (Released June 1, 2014)
+
+- Adding the following helper methods:
+  - rand.random(min, max)
+  - rand.floatBetween(min, max)
+  - rand.intBetween(min, max)
+
+#### v0.1.0 (Released October 26, 2013)
+
+- Initial Release
 
 
 ## License
