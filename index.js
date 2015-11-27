@@ -1,14 +1,14 @@
 /*
  * random-seed
  * https://github.com/skratchdot/random-seed
- * 
+ *
  * This code was originally written by Steve Gibson and can be found here:
- * 
+ *
  * https://www.grc.com/otg/uheprng.htm
- * 
+ *
  * It was slightly modified for use in node, to pass jshint, and a few additional
  * helper functions were added.
- * 
+ *
  * Copyright (c) 2013 skratchdot
  * Dual Licensed under the MIT license and the original GRC copyright/license
  * included below.
@@ -51,7 +51,8 @@
 	Qualifying MWC multipliers are: 187884, 686118, 898134, 1104375, 1250205,
 	1460910 and 1768863. (We use the largest one that's < 2^21)
 	============================================================================ */
-"use strict";
+'use strict';
+var stringify = require('json-stringify-safe');
 
 /*	============================================================================
 This is based upon Johannes Baagoe's carefully designed and efficient hash
@@ -89,11 +90,13 @@ var uheprng = function (seed) {
 		var c = 1; // init the 'carry' used by the multiply-with-carry (MWC) algorithm
 		var p = o; // init the 'phase' (max-1) of the intermediate variable pointer
 		var s = new Array(o); // declare our intermediate variables array
-		var i, j, k = 0; // general purpose locals
+		var i; // general purpose local
+		var j; // general purpose local
+		var k = 0; // general purpose local
 
 		// when our "uheprng" is initially invoked our PRNG state is initialized from the
 		// browser's own local PRNG. This is okay since although its generator might not
-		// be wonderful, it's useful for establishing large startup entropy for our usage.		
+		// be wonderful, it's useful for establishing large startup entropy for our usage.
 		var mash = new Mash(); // get a pointer to our high-performance "Mash" hash
 
 		// fill the array with initial mash hash values
@@ -126,7 +129,8 @@ var uheprng = function (seed) {
 		// this EXPORTED function 'string(n)' returns a pseudo-random string of
 		// 'n' printable characters ranging from chr(33) to chr(126) inclusive.
 		random.string = function (count) {
-			var i, s = '';
+			var i;
+			var s = '';
 			for (i = 0; i < count; i++) {
 				s += String.fromCharCode(33 + random(94));
 			}
@@ -153,9 +157,9 @@ var uheprng = function (seed) {
 		// from any string it is handed. this is also used by the 'hashstring' function (below) to help
 		// users always obtain the same EFFECTIVE uheprng seeding key.
 		random.cleanString = function (inStr) {
-			inStr = inStr.replace(/(^\s*)|(\s*$)/gi, ""); // remove any/all leading spaces
-			inStr = inStr.replace(/[\x00-\x1F]/gi, ""); // remove any/all control characters
-			inStr = inStr.replace(/\n /, "\n"); // remove any/all trailing spaces
+			inStr = inStr.replace(/(^\s*)|(\s*$)/gi, ''); // remove any/all leading spaces
+			inStr = inStr.replace(/[\x00-\x1F]/gi, ''); // remove any/all control characters
+			inStr = inStr.replace(/\n /, '\n'); // remove any/all trailing spaces
 			return inStr; // return the cleaned up result
 		};
 
@@ -181,7 +185,12 @@ var uheprng = function (seed) {
 				seed = Math.random();
 			}
 			if (typeof seed !== 'string') {
-				seed = JSON.stringify(seed) || '';
+				seed = stringify(seed, function (key, value) {
+					if (typeof value === 'function') {
+						return (value).toString();
+					}
+					return value;
+				});
 			}
 			random.initState();
 			random.hashString(seed);

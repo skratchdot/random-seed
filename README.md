@@ -1,8 +1,16 @@
 # random-seed
 
+[![NPM version](https://badge.fury.io/js/random-seed.svg)](http://badge.fury.io/js/random-seed)
 [![Build Status](https://travis-ci.org/skratchdot/random-seed.png?branch=master)](https://travis-ci.org/skratchdot/random-seed)
-[![Coverage Status](https://coveralls.io/repos/skratchdot/random-seed/badge.png)](https://coveralls.io/r/skratchdot/random-seed)
+[![Code Climate](https://codeclimate.com/github/skratchdot/random-seed.png)](https://codeclimate.com/github/skratchdot/random-seed)
+[![Coverage Status](https://coveralls.io/repos/skratchdot/random-seed/badge.svg?branch=master&service=github)](https://coveralls.io/github/skratchdot/random-seed?branch=master)
+[![Dependency Status](https://david-dm.org/skratchdot/random-seed.svg)](https://david-dm.org/skratchdot/random-seed)
 [![devDependency Status](https://david-dm.org/skratchdot/random-seed/dev-status.svg)](https://david-dm.org/skratchdot/random-seed#info=devDependencies)
+
+[![NPM](https://nodei.co/npm/random-seed.png)](https://npmjs.org/package/random-seed)
+
+
+## Description
 
 Gibson Research Corporation's Ultra-High Entropy Pseudo-Random Number Generator
 ported to node.
